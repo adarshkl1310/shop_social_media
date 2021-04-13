@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link href="//fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Oxygen:400,700" rel="stylesheet">
+  </head>
+  <body class = "post">
+<div class="col-md-6 col-md-offset-3">
+<h2 class="text-center sign-head"><b>Edit <%= resource_name.to_s.humanize%></b></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="field"> 
+    <b><%= f.label :country,"Country",class: "signin-text" %> : </b><br />
+    <%= f.text_field :country, placeholder: "Your Country", :maxlength=>"20",class: "form-control"  %>
+  </div></br>
+
+  <div class="field">
+    <b> <%= f.label :Business_Type,class: "signin-text" %> : </b><br />
+    <%= f.select :business_type,[["Select One", " "],
+['Retail store'],
+['Agriculture,Animal,Food & Beverages'], 
+['Apparel, Textile & Leather'], 
+['Fashion Accessories & wear'],
+['Cosmetic & Beauty'], 
+['Sports & Fitness'], 
+['Automobiles & Transportations'], 
+['Computer & Telecommunication'], 
+['Electronics'], 
+['Electrical'],
+['Education service business'],  
+['Buildings & Construction'], 
+['School, College & University'],
+['Hospital & Medical'], 
+['Household & Kitchen'], 
+['Hotel/Touism/Paying guest'], 
+['Machinery & Industrial parts'],
+['Manufacturer'],
+['Valuable Jewelry, Gem & Metal'],
+['Wholesaler/Distributor'], 
+['Bags, Rubber & Plastics'], 
+['Energy, Environments & Power'], 
+['Exporter/Importer'],
+['Paper & Packing material'], 
+['Printing, publishing & Hardware'],
+['Security, Alarm & Safety'], 
+['Laboratory & Measuring instruments'], 
+['Pipes, Tubes & Fitting'], 
+['Handicrafts, Toys, Gifts & Crafts'], 
+['Furniture & Furnishings'], 
+['Games, Movies & Entertainment'], 
+['Business services & Freelancer']],{},class: "form form-group form-control"%>
+  </div>
+
+  <div class="field">
+    <b><%= f.label :email,class: "signin-text" %> : </b><br />
+    <%= f.email_field :email,:size=>"55", placeholder: "Email : example@gmail.com", :maxlength=>"80",class: "form-control"   %>
+  </div></br>
+
+  <div class="field">
+   <b> <%= f.label :password,class: "signin-text" %> : </b>
+    <% if @minimum_password_length %>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off",:size=>"55",:maxlength=>"50",class: "form-control",placeholder: "Password (6 characters minimum)" %>
+  </div></br>
+
+  <div class="field">
+   <b> <%= f.label :password_confirmation,class: "signin-text" %> : </b> <br />
+    <%= f.password_field :password_confirmation, autocomplete: "off",:size=>"55",:maxlength=>"50" ,class: "form-control",placeholder: "Password Confirmation" %>
+  </div></br>
+
+   <div class="field">
+    <b><%= f.label :Mobile_Number,class: "signin-text" %> : </b><br />
+    <%= f.text_field :mobile_number,:size=>"55",:maxlength=>"30",class: "form-control",placeholder: "Mobile_Number" %>
+  </div></br>
+
+  <div class="field">
+    <%= f.label :we_need_your_current_password_to_confirm_your_changes,class: "signin-text" %><br />
+    <%= f.password_field :current_password, autocomplete: "off",:size=>"55",:maxlength=>"50",class: "form-control"    %>
+  </div></br>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, "Update",class: "btn-success btn btn-lg" %>
+  </div>
+<% end %>
+
+<h3 class="signin-text">Cancel my account</h3>
+
+<p class="signin-text">Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: "btn-success btn"  %></p>
+
+<%= link_to "Back", :back,class: "btn-success btn"  %>
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</div>
+<div class="footer">
+<div class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <div class="w3-xlarge w3-padding-16">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+     <h6>Powered by shopprod</h6>
+  </div>
+ 
+</div>
+</div>
+
+</body>
+</html>

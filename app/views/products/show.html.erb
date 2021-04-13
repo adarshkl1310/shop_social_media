@@ -1,0 +1,50 @@
+<div class="col-md-12 col-sm-12">
+<% if user_signed_in? %> 
+<% if current_user.id == @user.id%>
+<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3 share-product-btn">
+<%= render 'form' %>
+</div>
+<%end%> 
+<%end%>
+<%@user.shops.limit(1).each do |shop|%>
+<% if user_signed_in? %>
+<% if current_user.id == @user.id%>
+<h4 class = "message1 w3-text-orange"><b><%=link_to shop.shopcomments.count,shop%></b></h4><%end%>
+<div class = "w3-btn w3-circle w3-green w3-opacity fa fa-envelope message w3-xlarge"><%=link_to "m",shop%></div>
+<%end%>
+<%end%>
+</div>
+
+<div class="col-md-12 col-sm-12">
+ <%@user.shops.each do |shop|%>
+ <div class="col-md-12 col-sm-12 shop_shop_name">
+   <div class="text-center"><b><%=link_to shop.shop_name.first(30),profile_path(@user.id)%></b></div>
+   <div class="text-center"><%=shop.shop_city.first(18)%></div>
+ </div>   
+   <%end%>
+</div>
+
+<div class="col-md-12 col-sm-12">
+<div class="w3-container w3-margin-bottom">
+<%@user.products.limit(30).each do |product|%>
+<div class="col-md-3 col-sm-3">
+<div class="panel panel-default">
+      <%if product.product_image.present?%>
+<p class="text-center"><%=link_to image_tag product.product_image.url(:medium),:size => "220x210", :crop => :fill,:data => {:gallery => 'gallery'}%></p>
+
+<%else%>
+       <div class="text-center"><%=image_tag("shopprod_image/product.jpg",:size => "180x180")%></div>
+
+
+<%end%>
+    <p class="text-center">product : <%=product.product_name%></p>
+    <p class="text-center">Price : <%=product.product_price%></p>
+<% if current_user == product.user%>  
+<p class="text-center"><%= link_to "Delete",product_path(product), method: :delete, data: { confirm: "Are you sure?" },class: "w3-button w3-red" %></p>
+<%end%>
+</div>
+</div>
+<%end%>
+</div>
+</div>
+</div>

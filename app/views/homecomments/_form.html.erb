@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+<div class="w3-container w3-margin-bottom">
+
+<h3>Add a Comment</h3>
+  
+    <div class="panel-heading">
+<%=simple_form_for([@home,@home.homecomments.build]) do |f| %>
+      
+	<%= f.text_area :content,:maxlength=>"10000",label: ".",:rows => 6,:cols => 60,class: "form-control" %>
+	</br>
+	
+	<%= f.submit"Add Comment", :title => "content can't be blank", :rel => 'tooltip',class: "w3-btn w3-green"%>
+	</div>
+<% end %>
+
+</div>
+</div>

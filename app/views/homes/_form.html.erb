@@ -1,0 +1,32 @@
+ 
+
+ 
+ <h4 class="text-center"><a class="w3-btn w3-green" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Share product information</a></h4>
+
+<div class="col">
+<div class="collapse multi-collapse" id="multiCollapseExample1">
+<div class="card card-body">
+        
+<%=simple_form_for @home, url: homes_path, html: { multipart: true } do |f| %>
+
+
+<%= f.text_field :product_name,:maxlength=>"50",placeholder:'Prod or biz Name' ,class: "form-control"%></br>
+<%= f.label :market_type,"Market type"%>&nbsp;-&nbsp;
+<%= f.radio_button :market_type,'Local'%>Local&nbsp;
+<%= f.radio_button :market_type,'Global'%>Global
+</br>
+
+<%= f.text_area :description,:maxlength=>"10000",placeholder: 'Prod or biz Description',class: "form-control" %></br>
+
+<%= f.label :Add_image,'Product Image'%>
+<%= f.file_field :homeimage%> </br>
+
+<p class="text-center"><%= f.submit"Publish", :title => "Name,Post,market type,Description can't be blank", :rel => 'tooltip',class: "w3-btn w3-green"%></p>
+
+<%end%>
+
+
+</div>
+ </div>
+  </div>
+

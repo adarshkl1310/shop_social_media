@@ -1,0 +1,77 @@
+<div class="col-md-12 col-sm-12">
+
+<div class="row">
+<div class="col-md-4 col-sm-4">
+<div class="w3-panel w3-card w3-responsive">
+<h4><b><%=current_user.homes.count%> Posts</b></h4>
+
+<% current_user.homes.each do |home| %>
+<div class="panel panel-default">
+<div class="w3-container">
+ <%=image_tag home.homeimage.url(:medium),alt:"product_image",:size => "170x170", :crop => :fill, class:"w3-hover-opacity"%>
+     
+ 
+ <div class="card-text">       
+        <p><b>Product / Biz: </b><%=home.product_name.first(34).capitalize%></p>
+
+        <p><b>Market Type : </b><%=home.market_type%></p>
+        
+        <p><%= home.description.first(100).capitalize%></p>
+<%=link_to"view post",home,class: "w3-btn w3-green"%>
+</br>
+</br>
+</div>
+</div>
+</div>
+<% end %>
+
+</div>
+</div>
+
+
+<div class="col-md-4 col-sm-4">
+<div class="w3-panel w3-card w3-responsive">
+<h4><b><%=current_user.homecomments.count%> Comments</b></h4>
+<%current_user.homecomments.each do |comment| %>
+<div class="panel panel-default">
+<div class="w3-container">	
+</br>
+<p><%=comment.content.first(50)%></p>
+<%=link_to "view comment",comment.home,class: "w3-btn w3-green"%>
+</br>
+</br>
+</div>
+</div>
+<% end %>
+
+
+</div>
+</div>	
+
+
+<div class="col-md-4 col-sm-4">
+<div class="w3-panel w3-card w3-responsive">
+<div class="w3-container w3-margin-bottom">
+<h4><b><%=current_user.shopcomments.count%> Messages</b></h4>
+<%current_user.shopcomments.each do |comment| %>
+<div class="panel panel-default">
+<div class="w3-container">	
+</br>
+<p><%=comment.content.first(50)%></p>
+<%=link_to "view Message",comment.shop,class: "w3-btn w3-green"%>
+</br>
+</br>
+</div>
+</div>
+<% end %>
+
+
+</div>
+</div>
+</div>	
+
+
+
+</div>
+
+</div>

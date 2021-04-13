@@ -1,0 +1,59 @@
+<% if user_signed_in? %>
+  <%else%>
+<div class="col-md-12">
+  <div class="head">
+  
+ <h7>Sign Up or Sign In to add a Comment </h7>
+
+ </div>
+</div>
+<%end%>
+
+</br>
+
+<div class="col-md-7 col-md-offset-3">
+<div class="panel panel-default">
+<div class="w3-container w3-margin-bottom">
+</br>
+ <p> <%= link_to "Back", homes_path, class: "w3-button w3-blue-grey" %></p>
+
+<h6> Name : <%=link_to @home.user.name.first(30).capitalize, profile_path(@home.user.id),class: "w3-text-blue"%></h6>
+  <p> country : <%=@home.user.country.first(14).capitalize %>
+
+  / <%=@home.user.business_type.capitalize%> </p>
+
+
+<h6><%= time_ago_in_words(@home.created_at) %> ago</h6>
+
+<%if @home.homeimage.present?%>
+
+         <%= image_tag @home.homeimage.url(:medium),:size => "220x220", :crop => :fill%>
+
+      <%else%>
+      <%=image_tag("shopprod_image/n4.jpg",:size => "210x210")%>
+ 
+      <%end%> 
+
+    </br>
+     <p class="card-text">       
+        <p><b>product - </b><%= @home.product_name %></p>
+      <p><b>Market type -</b> <%=@home.market_type.capitalize%></p>
+
+   <p> <%= @home.description%></p>
+   </p>
+<% if current_user == @home.user %>
+
+ <%= link_to "Delete", home_path(@home), method: :delete, data: { confirm: "Are you sure?" }, class: "w3-button w3-red"%>
+<%end%>
+</div>
+</div>
+
+  <h4>(<%=@home.homecomments.count%>) Comment</h4>
+  
+   <p><%= render @home.homecomments %></p>
+<% if user_signed_in? %>
+
+    <%= render 'homecomments/form' %>
+<%end%>
+
+ </div>   

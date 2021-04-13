@@ -1,0 +1,23 @@
+
+<div class="w3-panel w3-card-2 w3-responsive">
+<div class="w3-container w3-margin-bottom">
+
+
+<h6><b>Name : </b><%=link_to shopcomment.user.name,profile_path(shopcomment.user.id).capitalize,class: "w3-text-blue"%></h6> 
+ <P><b>Country : </b><%=shopcomment.user.country%> / <%=shopcomment.user.business_type.capitalize %>
+   </P>
+  <P><b><%= time_ago_in_words(shopcomment.created_at) %> ago</b></P>
+   </br>
+   <p class="text-secondary"><%= shopcomment.content %></p>
+ </br>
+  <% if current_user == shopcomment.user %>
+
+<%= link_to "Edit", edit_shop_shopcomment_path(shopcomment.shop, shopcomment),class: "w3-btn w3-blue-grey" %>
+
+<%= link_to "Delete", shop_shopcomment_path(shopcomment.shop, shopcomment), method: :delete, data: { confirm: "Are you sure?"},class: "w3-btn w3-red" %>
+
+<%end%>
+
+</div>
+</div>
+

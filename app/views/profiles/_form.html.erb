@@ -1,0 +1,23 @@
+<div class="col-md-7 col-sm-7">
+<div class="w3-panel w3-card w3-responsive">
+<div class="w3-container w3-margin-bottom">
+
+<h3>Add photo</h3>
+
+<%=simple_form_for @profile, url: profiles_path, html: { multipart: true } do |f| %>
+
+<%= f.label :profile_image,'Your Photo'%></br>
+ <%= f.file_field :profile_image%></br>
+
+<%=f.label :date_of_birth,'Birth Year'%></br>
+<%= f.date_field :date_of_birth,:order => [:day, :month, :year]%></br>
+
+</br>
+<%= f.submit"Upload Image",:title => "Your photo, Birth year can't be blank", :rel => 'tooltip',class: "w3-btn w3-green"%>
+
+<%end%>
+
+
+</div>
+</div>
+</div>

@@ -1,0 +1,26 @@
+<div class="col-md-6">  
+  <div class="searchbar"><%= render 'search_user' %></div>
+</div>
+
+<div class="w3-container">
+
+
+<%@users.each do|user|%>
+<div class="col-md-3">
+<div class="w3-panel w3-card w3-responsive carduser">
+
+<%if user.profiles.length == 0%>
+<div class="text-center"><%=link_to image_tag("shopprod_image/person.png",width: "60px",class: 'img-circle'),profile_path(user.id)%></div>
+<%end%>
+
+<% user.profiles.each do |profile| %>
+<div class="text-center"><%=link_to (image_tag profile.profile_image.url(:medium),:size => "60x60",:crop =>:fill,class: 'img-circle'),profile_path(user.id)%></div>
+<%end%>
+<div class="text-center"><%=link_to user.name.first(20).capitalize,profile_path(user.id),class: "w3-text-blue"%></div>
+<div class="text-center"><%=user.business_type.capitalize%></div>
+<div class="text-center"><%=user.country.first(11)%> </div>
+
+</div>
+</div>
+<%end%>
+</div>

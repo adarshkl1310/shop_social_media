@@ -1,0 +1,42 @@
+
+<%= simple_form_for @shop, url: shops_path, html: { multipart: true } do |f|%>
+
+<%= f.label :Shop_Name,"Shop Name(Full shop name)" %>
+<%= f.text_field :shop_name,:maxlength=>"40",placeholder:'Ex - ABC book retail shop, ABC toy manufacturer',class: "form-control"%>
+</br>
+
+<%= f.label :Shop_City,"Shop City" %>
+<%= f.text_field :shop_city,:maxlength=>"30",placeholder:'Ex - Delhi ',class: "form-control"%>
+</br>
+
+<%= f.label :Shop_Type,"Shop Type" %>
+<%= f.text_field :shop_type,:maxlength=>"40",placeholder:'Ex - Book Shop,Grocery Shop,Mobile Manufacturer,Medical Shop',class: "form-control"%>
+</br>
+
+<%= f.label :About_Shop,"About Shop" %> 
+<%= f.text_area :description,:maxlength=>"200",placeholder:'Describe About Your Shop',class: "form-control"%>
+</br>
+
+<%= f.label :Shop_Timeing,'Shop Open and Closed Time' %>
+<%= f.text_field :shop_timeing,:maxlength=>"37",placeholder:' Ex-Morning 9AM to Evening 6PM ',class: "form-control"%></br>
+
+<%= f.label :Min_Order,'Min Order' %>
+<%= f.text_field :min_order,:maxlength=>"20",placeholder:'Ex - 3 Box',class: "form-control"%></br>
+
+
+
+<%= f.label :Delivery,'Delivery Time' %>
+<%= f.text_field :delivery,:maxlength=>"20",placeholder:'Ex - 2 Hours',class: "form-control"%></br>
+
+<%= f.label :Shop_image,'Shop/Office front Image'%>
+<%= f.file_field :shop_image%></br>
+
+<%= f.submit"Add Shop Information",class: "w3-btn w3-green"%></b>
+</br>
+</br>
+</br>
+<%end%>
+
+
+
+

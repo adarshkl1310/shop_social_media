@@ -1,0 +1,61 @@
+<% if user_signed_in? %>
+  <%else%>
+<div class="col-md-12">
+  <div class="head">
+  
+ <h7>Sign In to create a Shop </h7>
+
+ </div>
+</div>
+<%end%>
+</br>
+
+
+<div class="col-md-10 col-md-offset-1 w3-container">    
+<div class="searchbar"><%= render 'search' %></div>
+<h7><b><%=link_to"Filter Search",new_message_path%></b></h7>
+</div>
+</div>
+
+<div class="col-md-10 col-md-offset-1">
+
+<%@shop.each do |shop|%>
+<div class="panel panel-default">
+<div class="row">
+
+<div class="col-md-2">
+<div class="w3-container w3-margin-bottom">
+
+    <h6 class="w3-text-green"><b><%=shop.shop_name.first(30)%></b></h6>
+ <%if shop.shop_image.present?%>
+<p><%= image_tag shop.shop_image.url(:thumb),:size => "150x150", :crop =>:fill%></p>
+
+      <%else%>
+       <%=image_tag("shopprod_image/shop.jpg",:size => "150x150")%>
+
+      <%end%>       
+
+<p><%= link_to "View shop",product_path(shop.user.id),class: "w3-btn w3-green" %></p>
+
+</div>
+</div>
+<div class="col-md-9">
+<div class="w3-container w3-margin-bottom">
+     
+    <h6><b> Name : </b><%=link_to shop.user.name.first(30).capitalize, profile_path(shop.user.id),class: "w3-text-blue"%></h6>
+    <p>  <%=shop.user.country%> /
+    <%=shop.user.business_type%></p>
+    <p class="text-muted"><%= time_ago_in_words(shop.created_at) %> ago</p>
+
+    <h6><b>Type : </b><%=shop.shop_type%></h6>
+    <p><b>City : </b><%=shop.shop_city%></p>
+    <p><b>delivery : </b><%=shop.delivery%></p>
+    
+    <p class="text-muted"><%=shop.description%></p> 
+</div>
+</div>
+
+</div>
+</div>
+<%end%>
+</div>

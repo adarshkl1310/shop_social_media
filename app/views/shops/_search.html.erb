@@ -1,0 +1,19 @@
+<div id="landing-search-input">
+    <div class="row">
+        <div class="col-md-12">
+           <%= form_with url: shops_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
+               <div class="row form-group">
+                  <div class="col-sm-7">
+                    <%= form.text_field :search, placeholder: "Search Shop Name", size: 40, data: { behavior: "autocomplete" }, class: "form-control" %>
+                  </div>
+                  <div class="col-sm-1 col-md-offset-1">
+                  	<%=form.button (fa_icon "search", text: "Search"), class: "w3-btn w3-blue-grey" %>
+
+                  </div>
+                </div>
+           <% end %>
+       </div>
+    </div>
+</div>
+
+

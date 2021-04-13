@@ -1,0 +1,175 @@
+
+<div class="col-md-12 col-sm-12">
+<div class="row">	
+
+<div class="col-md-4 col-sm-4">
+<div class="w3-panel w3-card w3-responsive">
+<div class="w3-container w3-margin-bottom">
+
+<%if @user.profiles.length == 0%>
+<%= image_tag("shopprod_image/person.png",width: "80px",class: 'img-circle')%>
+<%end%>
+
+<%@user.profiles.limit(1).each do |profile|%>
+</br>
+<p><%= image_tag profile.profile_image.url(:medium),:size => "100x100", :crop =>:fill,class: 'img-circle'%></p>
+<p>Birth Year : <%=profile.date_of_birth%><p>
+<% if current_user == profile.user%>  
+<p><%= link_to "Delete", profile_path(profile), method: :delete, data: { confirm: "Are you sure?"},class: "text-danger"%></p>
+<%end%>
+<%end%>
+
+<% if user_signed_in? %> 
+<% if current_user.id == @user.id%>
+<%if @user.profiles.length == 0%>
+<p><%=link_to"Add photo",new_profile_path,class: "w3-btn w3-green" %></p>
+<%end%>
+<%end%>
+<%end%>
+<h5><b><%=@user.name.first(10).capitalize%></b></h5>
+<p><%=@user.business_type.capitalize%> /
+<%=@user.country.first(15).capitalize%></p>
+
+</div>
+</div>
+</div>
+
+
+<div class="col-md-4 col-sm-4">
+<div class="w3-panel w3-card w3-responsive">
+<div class="w3-container w3-margin-bottom">
+
+
+<%if @user.shops.length == 0%>
+<% if user_signed_in? %> 
+<% if current_user.id == @user.id%>
+<div class="w3-responsive">
+<h5 class="w3-button w3-border w3-hover-blue-grey"><%=link_to"Add shop Name",new_shop_path%></h5>
+</div>
+
+<%end%>
+<%end%>
+<%end%>
+
+   <%@user.shops.each do |shop|%>
+   <h5><b><%=shop.shop_name%></b></h5>
+   <p><%=shop.shop_type%></p>
+   <p><%=shop.shop_city%></p>
+   <%end%>
+
+   <%=link_to " Shop ", product_path(@user.id),class: "w3-btn w3-green"%>
+
+   <% if user_signed_in? %> 
+<% if current_user.id == @user.id%>
+   <%=link_to " Dashboard", profiles_path,class: "w3-btn w3-blue-grey"%>
+<%end%>
+<%end%>
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="col-md-12 col-sm-12">
+<div class="row">	
+<div class="w3-panel w3-card w3-responsive">
+<div class="w3-container w3-margin-bottom">
+
+<h4><b>Shop Information</b></h4>
+<%if @user.shops.length == 0%>
+<% if user_signed_in? %> 
+<% if current_user.id == @user.id%>
+<h5 class="w3-button w3-border w3-hover-blue-grey"><%=link_to"Add shop Name to recognize.",new_shop_path%></h5>
+<%end%>
+<%end%>
+<%end%>
+
+<%@user.shops.each do |shop|%>
+<div class="col-md-4">
+</br>
+<%if @user.profiles.length == 0%>
+       <%=image_tag("shopprod_image/shop.jpg",:size => "150x150")%>
+
+<%else%>
+
+<%= image_tag shop.shop_image.url(:medium),:size => "200x200", :crop =>:fill%>
+<%end%>
+
+
+</div>
+<div class="col-md-4 col-sm-4">
+
+     <h5><%=shop.shop_name%></h5>
+     <p><%=shop.shop_type%></p>
+     <p><%=shop.shop_city%></p>
+     <p><%=shop.business_day%></p>
+     <p><%=shop.shop_timeing%></p> 
+ </div> 
+ <div class="col-md-4 col-sm-4">
+    
+     <p><%=shop.delivery%></p>
+     <p><%=shop.min_order%></p>
+     <p><%=shop.description%></p> 
+ </br>
+<% if current_user == shop.user%> 
+<%= link_to "Delete", shop_path(shop), method: :delete, data: { confirm: "Are you sure?" },class: "w3-button w3-red" %>
+<%end%>
+</div>
+<%end%>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-md-12 col-sm-12">
+<div class="row">	
+<div class="w3-panel w3-card w3-responsive">
+<div class="w3-container w3-margin-bottom">
+
+<h4><b>Products Information</b></h4>
+<%if @user.products.length == 0%>
+<% if user_signed_in? %> 
+<% if current_user.id == @user.id%>
+<h5 class="w3-button w3-border w3-hover-blue-grey"><%=link_to"Add Products to your shop.",product_path(@user.id)%></h5>
+<%end%>
+<%end%>
+<%end%>
+<%@user.products.each do |product|%>
+
+<div class="col-md-3 col-sm-3">
+<div class="panel panel-default">
+<div class="w3-container w3-margin-bottom">
+<%if @user.profiles.length == 0%>
+       <%=image_tag("shopprod_image/product.jpg",:size => "150x150")%>
+
+<%else%>
+ <div class="text-center"><%=image_tag("shopprod_image/product.jpg",:size => "180x180")%></div>
+<%end%>
+  
+
+
+    <p>product : <%=product.product_name%></p>
+    <p>Price : <%=product.product_price%></p> 
+<% if current_user == product.user%> 
+<p><%= link_to "Delete",product_path(product), method: :delete, data: { confirm: "Are you sure?" },class: "w3-button w3-red" %></p>
+<%end%>
+</div>
+</div>
+</div>
+<%end%>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+

@@ -1,0 +1,45 @@
+</br>
+<div class="col-md-9">
+<div class="w3-container w3-margin-bottom">
+
+ <div class="text-center"><%= link_to "Back",shops_path,class: "w3-btn w3-green"%></div>
+</div>
+</div>
+
+<div class="col-md-9 col-md-offset-1">
+<div class="w3-container w3-margin-bottom">
+
+<%= form_for @message, html: {class: "pure-form"} do |s|%>
+
+<div class="col-md-3">
+	<div class="field">
+	<%= s.label :name,"Shop Name"%></br>
+   <%= s.text_field :keywords,placeholder:'Ex - ABC book retail shop, ABC toy manufacturer'%>
+    </div>
+ </div>    
+ 
+  <div class="col-md-3">
+	<div class="field">
+	<%= s.label :city,"Shop City"%></br>
+	<%=s.text_field :keywords2,placeholder:'Ex - Delhi'%>
+  </div>
+  </div>
+    
+   <div class="col-md-3">
+    <div class="field">
+    <%= s.label :shop_type,"Shop Type"%></br>
+    <%=s.text_field :keywords3,placeholder:'Ex - Book Shop,Grocery Shop,Mobile Manufacturer,Medical Shop'%>
+    </div>
+    </div>
+
+   </br>
+    <div class="col-md-1">
+  <div class=""><%=s.submit "search",class: "w3-button w3-blue-grey"%></div>
+    </div>
+
+	<%end%>
+ 
+
+</div>
+</div>
+

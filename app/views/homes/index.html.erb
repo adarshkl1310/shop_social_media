@@ -1,0 +1,114 @@
+<% if user_signed_in? %>
+<div class="col-md-6 col-md-offset-3 share-product-btn">
+  <%= render 'form' %>
+  </div>
+  <%else%>
+<div class="col-md-12">
+  <div class="head">
+  
+ <h7>Sign In to share product or business information</h7>
+ </div>
+</br>
+</div>
+<%end%>
+
+<div class="col-md-12">
+
+<div class="row">
+
+<div class="col-md-6">  
+  <div class="searchbar"><%= render 'search' %></div>
+</div>
+
+<div class="col-md-3 col-md-offset-3 w3-hide-small w3-hide-medium"> 
+<div class="w3-panel w3-card-2 w3-responsive"> 
+
+<h4 class="text-center">users</h4>
+<h5 class="text-center"><%=link_to "view all user",new_home_path,class: "w3-button w3-blue-grey"%></h5>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="row">
+
+<div class=col-md-9>	
+
+<%@homes.each do |home| %>
+<div class="col-md-6">
+<div class="w3-container w3-margin-bottom">
+<div class="w3-panel w3-card w3-responsive cardhome">
+</br>
+<h6><b>Name : </b><%=link_to home.user.name.first(20).capitalize, profile_path(home.user.id),class: "w3-text-blue"%></h6>
+  <p><b> country : </b><%=home.user.country.first(14).capitalize %>
+
+  / <%=home.user.business_type.capitalize%> </p>
+
+      <%if home.homeimage.present?%>
+
+      <%=image_tag home.homeimage.url(:medium),alt:"product_image", :width => '50%', class:"w3-hover-opacity"%>
+      <%else%>
+      <%=image_tag("shopprod_image/n4.jpg",:size => "150x150")%>
+ 
+      <%end%>	
+ <p class="card-text">       
+        <p><b>Product / Biz: </b><%=home.product_name.first(34).capitalize%></p>
+
+        <p><b>Market Type : </b><%=home.market_type%></p>
+        
+        <p><%= home.description.first(230).capitalize%></p>
+        
+        <p>(<%=home.homecomments.count%>) Comment</p>
+  </p> 
+        <%= link_to "View Post", home,class: "w3-button w3-blue-grey" %>
+
+      </div>
+  </div>  
+</div>
+<%end%>   
+
+</div>
+
+
+<div class="col-md-3 w3-hide-small w3-hide-medium">
+
+
+
+<%@users.each do|user|%>
+
+<div class="w3-panel w3-card w3-responsive">
+
+<%if user.profiles.length == 0%>
+<div class="text-center"><%=link_to image_tag("shopprod_image/person.png",width: "60px",class: 'img-circle'),profile_path(user.id)%></div>
+<%end%>
+
+<% user.profiles.each do |profile| %>
+<div class="text-center"><%=link_to (image_tag profile.profile_image.url(:medium),:size => "60x60",:crop =>:fill,class: 'img-circle'),profile_path(user.id)%></div>
+<%end%>
+<div class="text-center"><%=link_to user.name.first(20).capitalize,profile_path(user.id),class: "w3-text-blue"%></div>
+<div class="text-center"><%=user.business_type.capitalize%></div>
+<div class="text-center"><%=user.country.first(11)%> </div>
+
+</div>
+<%end%>
+
+
+</div>	
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
